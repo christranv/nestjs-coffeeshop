@@ -1,0 +1,15 @@
+version: '3.2'
+
+services:
+  postgresql_local:
+    image: postgres:15.3-alpine
+    ports:
+      - '5432:5432'
+    restart: always
+    env_file:
+      - env/local.pg.env
+    volumes:
+      - pg_data_local:/var/lib/postgresql/data
+
+volumes:
+  pg_data_local:
