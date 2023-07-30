@@ -21,7 +21,7 @@
 ## 🗒 Feature Plan
 
 - Have Postgres data seeding
-- Use modular monolith
+- Apply DDD
 - Use CQRS
 - Support background job
 - Write unit test
