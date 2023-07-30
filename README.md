@@ -1,8 +1,8 @@
-<h1> Coffee Shop API </h1>
-
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
+
+<h1> Coffee Shop API </h1>
 
 ![Status](https://img.shields.io/badge/Status-Developing-0287D0?style=flat-square)&nbsp;
 ![NestJS](https://img.shields.io/badge/Terraform-1%2E0%2E0-E0234E?style=flat-square&logo=nestjs&logoColor=E0234E)&nbsp;
