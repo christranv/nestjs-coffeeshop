@@ -2,9 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Dev",
+      "name": "Debug DEV",
       "type": "node-terminal",
       "request": "launch",
+      "trace": true,
       "command": "npm run start:debug"
     }
   ]

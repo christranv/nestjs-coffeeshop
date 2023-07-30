@@ -7,7 +7,7 @@ services:
       - '5432:5432'
     restart: always
     env_file:
-      - env/local.pg.env
+      - config/local.pg.env
     volumes:
       - pg_data_local:/var/lib/postgresql/data
 

@@ -13,13 +13,21 @@
 **Table of Contents**
 - [🌱 Features](#-features)
 - [🗒 Feature Plan](#-feature-plan)
+- [🏗 Clean Architecture](#-clean-architecture)
 
 ## 🌱 Features
 - Support Postgres DB
 
 ## 🗒 Feature Plan
 
+- Have Postgres data seeding
 - Use modular monolith
 - Use CQRS
 - Support background job
-- Writing test
+- Write unit test
+- Integrate task scheduling
+
+## 🏗 Clean Architecture
+![Clean Architecture](/images/clean-architecture-diagram.webp)
+
+

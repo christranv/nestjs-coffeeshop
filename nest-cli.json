@@ -3,6 +3,9 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "assets": [{ "include": "../config/*.yaml", "outDir": "./dist/config" }],
+    "deleteOutDir": true,
+    "builder": "swc",
+    "typeCheck": true
   }
 }
