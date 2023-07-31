@@ -5,7 +5,6 @@
       "name": "Debug DEV",
       "type": "node-terminal",
       "request": "launch",
-      "trace": true,
       "command": "npm run start:debug"
     }
   ]

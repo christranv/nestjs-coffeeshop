@@ -1,3 +1,5 @@
+import { DateTimeHelper } from "src/domain/base/helpers/datetime-helper";
+
 export class BaristaOrderUp {
   orderId: string;
   itemLineId: string;
@@ -19,7 +21,7 @@ export class BaristaOrderUp {
     this.itemLineId = itemLineId;
     this.name = name;
     this.itemType = itemType;
-    this.timeIn = new Date(Date.now());
+    this.timeIn = DateTimeHelper.UTCNow;
     this.madeBy = madeBy;
     this.timeUp = timeUp;
   }

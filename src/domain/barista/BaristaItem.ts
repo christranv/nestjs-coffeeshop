@@ -1,5 +1,4 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
-import { BaristaOrderUp } from './events/BaristaOrderUp';
 
 @Entity()
 export class BaristaItem {
@@ -37,16 +36,16 @@ export class BaristaItem {
     itemLineId: string,
     timeUp: Date,
   ): BaristaItem {
-    AddDomainEvent(
-      new BaristaOrderUp(
-        orderId,
-        itemLineId,
-        this.itemName,
-        this.itemType,
-        new Date(Date.now()),
-        'teesee',
-      ),
-    );
+    // AddDomainEvent(
+    //   new BaristaOrderUp(
+    //     orderId,
+    //     itemLineId,
+    //     this.itemName,
+    //     this.itemType,
+    //     DateTimeHelper.UTCNow,
+    //     'teesee',
+    //   ),
+    // );
     this.timeUp = timeUp;
     return this;
   }

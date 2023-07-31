@@ -17,6 +17,7 @@
 
 ## 🌱 Features
 - Support Postgres DB
+- Support Speedy Web Compiler (SWC)
 
 ## 🗒 Feature Plan
 
