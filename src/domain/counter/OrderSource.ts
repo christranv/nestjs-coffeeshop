@@ -1,0 +1,4 @@
+enum OrderSource {
+  COUNTER,
+  WEB,
+}
