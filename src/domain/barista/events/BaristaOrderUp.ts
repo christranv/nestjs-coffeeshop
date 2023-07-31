@@ -1,4 +1,5 @@
-import { DateTimeHelper } from "src/domain/base/helpers/datetime-helper";
+import { ItemType } from "src/domain/base/enums/ItemType";
+import { DateHelper } from "../../base/helpers/date-helper";
 
 export class BaristaOrderUp {
   orderId: string;
@@ -21,7 +22,7 @@ export class BaristaOrderUp {
     this.itemLineId = itemLineId;
     this.name = name;
     this.itemType = itemType;
-    this.timeIn = DateTimeHelper.UTCNow;
+    this.timeIn = DateHelper.UTCNow;
     this.madeBy = madeBy;
     this.timeUp = timeUp;
   }

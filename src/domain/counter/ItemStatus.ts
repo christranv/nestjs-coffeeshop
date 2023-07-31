@@ -1,4 +1,4 @@
-enum ItemStatus {
+export enum ItemStatus {
   PLACED,
   IN_PROGRESS,
   FULFILLED,

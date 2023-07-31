@@ -1,4 +1,4 @@
-enum OrderSource {
+export enum OrderSource {
   COUNTER,
   WEB,
 }

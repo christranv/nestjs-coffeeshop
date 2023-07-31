@@ -2,6 +2,9 @@ import { Entity, PrimaryColumn, Column } from 'typeorm';
 import { LineItem } from './LineItem';
 import { Location } from './Location';
 import { OrderUp } from './events/OrderUp';
+import { OrderStatus } from './OrderStatus';
+import { OrderSource } from './OrderSource';
+import { ItemStatus } from './ItemStatus';
 
 @Entity()
 export class Order {

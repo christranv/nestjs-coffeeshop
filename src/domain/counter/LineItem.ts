@@ -1,4 +1,6 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { ItemType } from '../base/enums/ItemType';
+import { ItemStatus } from './ItemStatus';
 
 @Entity()
 export class LineItem {

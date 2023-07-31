@@ -21,8 +21,8 @@ const persistent = TypeOrmModule.forRootAsync({
       username: config.username,
       password: config.password,
       database: config.database,
-      entities: [__dirname + '/../../domain/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      entities: [__dirname + '/../../domain/**/*{.ts,.js}'],
+      synchronize: false,
       migrations: [
         "src/infrastructure/persistence/migration/**/*.ts"
       ],

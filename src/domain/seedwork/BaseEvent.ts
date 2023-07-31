@@ -1,4 +1,4 @@
-import { DateTimeHelper } from "../base/helpers/datetime-helper";
+import { DateHelper } from "../base/helpers/date-helper";
 
 interface IDomainEvent {
   createdAt: Date;
@@ -8,7 +8,7 @@ interface IDomainEvent {
 export abstract class BaseEvent implements IDomainEvent {
   // protected eventType;
   // public EventType:string => construct;
-  createdAt: Date = DateTimeHelper.UTCNow;
+  createdAt: Date = DateHelper.UTCNow;
   metadata: Map<string, object> = new Map<string, object>();
 }
 

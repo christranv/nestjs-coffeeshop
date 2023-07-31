@@ -1,4 +1,5 @@
-import { DateTimeHelper } from "src/domain/base/helpers/datetime-helper";
+import { ItemType } from "src/domain/base/enums/ItemType";
+import { DateHelper } from "src/domain/base/helpers/date-helper";
 import { BaseEvent } from "src/domain/seedwork/BaseEvent";
 
 export class OrderUp extends BaseEvent {
@@ -16,7 +17,7 @@ export class OrderUp extends BaseEvent {
         this.itemLineId = itemLineId;
         this.name = name;
         this.itemType = itemType;
-        this.timeIn = DateTimeHelper.UTCNow;
+        this.timeIn = DateHelper.UTCNow;
         this.madeBy = madeBy;
         this.timeUp = timeUp;
     }
