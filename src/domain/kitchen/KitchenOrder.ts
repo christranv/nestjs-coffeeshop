@@ -6,7 +6,7 @@ export class KitchenOrder {
   @PrimaryColumn()
   public id: string;
 
-  @Column()
+  @Column('int')
   public itemType: ItemType;
 
   @Column()
@@ -21,7 +21,7 @@ export class KitchenOrder {
   private constructor(id: string, itemType: ItemType, timeIn: Date) {
     this.id = id;
     this.itemType = itemType;
-    this.itemName = itemType.toString();
+    this.itemName = ItemType[itemType];
     this.timeIn = timeIn;
   }
 }

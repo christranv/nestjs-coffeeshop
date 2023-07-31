@@ -6,7 +6,7 @@ export class BaristaItem {
   @PrimaryColumn()
   public id: string;
 
-  @Column()
+  @Column('int')
   public itemType: ItemType;
 
   @Column()

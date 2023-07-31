@@ -2,7 +2,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 interface DatabaseConfig {
-  host: string;
+  url: string;
   port: number;
   username: string;
   password: string;
@@ -16,13 +16,13 @@ const persistent = TypeOrmModule.forRootAsync({
     if (config == undefined) throw new Error('Missing DB config');
     return {
       type: 'postgres',
-      host: config.host,
+      host: config.url,
       port: config.port,
       username: config.username,
       password: config.password,
       database: config.database,
       entities: [__dirname + '/../../domain/**/*{.ts,.js}'],
-      synchronize: false,
+      synchronize: true,
       migrations: [
         "src/infrastructure/persistence/migration/**/*.ts"
       ],

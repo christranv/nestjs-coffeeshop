@@ -14,6 +14,7 @@
 - [🌱 Features](#-features)
 - [🗒 Feature Plan](#-feature-plan)
 - [🏗 Clean Architecture](#-clean-architecture)
+- [Installation](#installation)
 
 ## 🌱 Features
 - Support Postgres DB
@@ -31,4 +32,5 @@
 ## 🏗 Clean Architecture
 ![Clean Architecture](/images/clean-architecture-diagram.webp)
 
-
+## Installation
+- `npm run migration:generate --name=Init`

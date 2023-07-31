@@ -1,6 +1,6 @@
-import { ItemType } from "src/domain/base/enums/ItemType";
+import { ItemType } from "../../base/enums/ItemType";
 import { DateHelper } from "../../base/helpers/date-helper";
-import { BaseEvent } from "src/domain/seedwork/BaseEvent";
+import { BaseEvent } from "../../seedwork/BaseEvent";
 
 class OrderUpdate extends BaseEvent {
     orderId: string;

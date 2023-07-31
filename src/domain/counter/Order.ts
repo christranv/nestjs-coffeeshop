@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany, JoinColumn } from 'typeorm';
 import { LineItem } from './LineItem';
 import { Location } from './Location';
 import { OrderUp } from './events/OrderUp';
@@ -11,19 +11,19 @@ export class Order {
   @PrimaryColumn()
   public id: string;
 
-  @Column()
+  @Column('int')
   public orderSource: OrderSource;
 
   @Column()
   public loyaltyMemberId: string;
 
-  @Column()
+  @Column('int')
   public orderStatus: OrderStatus;
 
-  @Column()
+  @Column('int')
   public location: Location;
 
-  @Column()
+  @OneToMany(() => LineItem, _ => _.order) @JoinColumn()
   public lineItems: LineItem[];
 
   private Order(orderSource: OrderSource, loyaltyMemberId: string, orderStatus: OrderStatus, location: Location) {
