@@ -9,7 +9,6 @@ import { QueryHandlers } from './queries/handlers';
 @Module({
   imports: [CqrsModule, InfrastructureModule],
   providers: [...CommandHandlers, ...QueryHandlers, ...DomainEventHandlers],
-  exports: [AppService]
 })
 export class AppModule implements OnModuleDestroy {
   private destroy$ = new Subject<void>();
