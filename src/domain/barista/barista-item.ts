@@ -1,8 +1,11 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { ItemType } from '../base/enums/item-type';
+import { DateHelper } from '../base/helpers/date-helper';
+import { BaseAggregateRoot } from '../seedwork/base-entity';
+import { BaristaOrderUp } from './events/barista-order-up';
 
 @Entity()
-export class BaristaItem {
+export class BaristaItem extends BaseAggregateRoot {
   @PrimaryColumn()
   public id: string;
 
@@ -19,6 +22,7 @@ export class BaristaItem {
   public timeUp: Date;
 
   private constructor(itemType: ItemType, itemName: string, timeIn: Date) {
+    super();
     this.itemType = itemType;
     this.itemName = itemName;
     this.timeIn = timeIn;
@@ -37,16 +41,17 @@ export class BaristaItem {
     itemLineId: string,
     timeUp: Date,
   ): BaristaItem {
-    // AddDomainEvent(
-    //   new BaristaOrderUp(
-    //     orderId,
-    //     itemLineId,
-    //     this.itemName,
-    //     this.itemType,
-    //     DateTimeHelper.UTCNow,
-    //     'teesee',
-    //   ),
-    // );
+    this.addDomainEvent(
+      new BaristaOrderUp(
+        orderId,
+        itemLineId,
+        this.itemName,
+        this.itemType,
+        DateHelper.UTCNow,
+        timeUp,
+        'teesee',
+      ),
+    );
     this.timeUp = timeUp;
     return this;
   }

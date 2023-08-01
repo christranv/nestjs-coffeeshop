@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 import { ItemType } from '../base/enums/item-type';
 import { ItemStatus } from './item-status';
 import { Order } from './order';
@@ -25,4 +25,12 @@ export class LineItem {
 
   @ManyToOne(() => Order, _ => _.lineItems)
   order: Order;
+
+  constructor(itemType: ItemType, name: string, price: number, itemStatus: ItemStatus, isBaristaOrder: boolean) {
+    this.itemType = itemType;
+    this.name = name;
+    this.price = price;
+    this.itemStatus = itemStatus;
+    this.isBaristaOrder = isBaristaOrder;
+  }
 }

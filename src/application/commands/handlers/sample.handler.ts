@@ -1,5 +1,5 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
-import { SampleCommand } from '../impl/sample-cmd.command';
+import { SampleCommand } from '../../../domain/counter/commands/place-order.command';
 
 @CommandHandler(SampleCommand)
 export class SampleHandler
