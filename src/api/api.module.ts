@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AuthController } from './controllers/auth.controller';
 import { ConfigModule } from '@nestjs/config';
+import { AppModule } from '../application/app.module';
 import configuration from '../config/configuration';
 import { validate } from '../config/validation';
-import { AppModule } from '../application/app.module';
+import { AuthController } from './controllers/order.controller';
 
 @Module({
   imports: [

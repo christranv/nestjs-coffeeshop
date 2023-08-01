@@ -1,10 +1,11 @@
+import { BaristaOrderUp } from "@/src/domain/barista/events/barista-order-up";
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
 
-@EventsHandler(HeroKilledDragonEvent)
-export class HeroKilledDragonHandler implements IEventHandler<HeroKilledDragonEvent> {
+@EventsHandler(BaristaOrderUp)
+export class HeroKilledDragonHandler implements IEventHandler<BaristaOrderUp> {
     constructor() { }
 
-    handle(event: HeroKilledDragonEvent) {
+    handle(event: BaristaOrderUp) {
         // Business logic
     }
 }

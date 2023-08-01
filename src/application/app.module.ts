@@ -1,11 +1,10 @@
 import { Logger, Module, OnModuleDestroy } from '@nestjs/common';
 import { CqrsModule, EventBus, IEvent } from '@nestjs/cqrs';
+import { Subject, takeUntil } from 'rxjs';
 import { InfrastructureModule } from '../infrastructure/infrastructure.module';
-import { AppService } from './app.service';
 import { CommandHandlers } from './commands/handlers';
 import { DomainEventHandlers } from './domain-event-handlers';
 import { QueryHandlers } from './queries/handlers';
-import { Subject, takeUntil } from 'rxjs';
 
 @Module({
   imports: [CqrsModule, InfrastructureModule],

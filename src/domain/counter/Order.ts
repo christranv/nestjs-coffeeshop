@@ -44,7 +44,7 @@ export class Order extends BaseAggregateRoot {
     if (command.baristaItems.length) {
       for (const baristaItem of command.baristaItems) {
         const item = Item.GetItem(baristaItem.itemType);
-        const lineItem = new LineItem(baristaItem.itemType, item.type, item.price, ItemStatus.IN_PROGRESS, true);
+        const lineItem = new LineItem(baristaItem.itemType, item.toString(), item.price, ItemStatus.IN_PROGRESS, true);
 
         order.apply(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
         order.apply(new BaristaOrderIn(order.id, lineItem.id, lineItem.itemType));
@@ -56,7 +56,7 @@ export class Order extends BaseAggregateRoot {
     if (command.kitchenItems.length) {
       for (const kitchenItem of command.kitchenItems) {
         const item = Item.GetItem(kitchenItem.itemType);
-        const lineItem = new LineItem(kitchenItem.itemType, item.type, item.price, ItemStatus.IN_PROGRESS, false);
+        const lineItem = new LineItem(kitchenItem.itemType, item.toString(), item.price, ItemStatus.IN_PROGRESS, false);
 
         order.addDomainEvent(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
         order.addDomainEvent(new KitchenOrderIn(order.id, lineItem.id, lineItem.itemType));
