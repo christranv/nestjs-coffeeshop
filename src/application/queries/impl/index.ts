@@ -1,1 +1,1 @@
-export * from './sample-query.query';
+export * from './fulfilled-orders.query';

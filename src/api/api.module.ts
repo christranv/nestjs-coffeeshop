@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppModule } from '../application/app.module';
 import configuration from '../config/configuration';
 import { validate } from '../config/validation';
-import { AuthController } from './controllers/order.controller';
+import { OrderController } from './controllers/order.controller';
 
 @Module({
   imports: [
@@ -14,6 +14,6 @@ import { AuthController } from './controllers/order.controller';
     }),
     AppModule
   ],
-  controllers: [AuthController],
+  controllers: [OrderController],
 })
 export class ApiModule { }

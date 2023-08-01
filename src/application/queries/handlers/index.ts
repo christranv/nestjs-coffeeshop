@@ -1,3 +1,3 @@
-import { SampleQueryHandler } from './sample-query.handler';
+import { GetFulfilledOrdersHandler } from './order-fulfillment.handler';
 
-export const QueryHandlers = [SampleQueryHandler];
+export const QueryHandlers = [GetFulfilledOrdersHandler];
