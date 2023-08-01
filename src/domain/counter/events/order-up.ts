@@ -1,25 +1,20 @@
-import { ItemType } from "../../base/enums/ItemType";
+import { ItemType } from "../../base/enums/item-type";
 import { DateHelper } from "../../base/helpers/date-helper";
-import { BaseEvent } from "../../seedwork/BaseEvent";
+import { BaseEvent } from "../../seedwork/base-event";
 
 export class OrderUp extends BaseEvent {
-    orderId: string;
-    itemLineId: string;
-    name: string;
-    itemType: ItemType
-    timeIn: Date
-    madeBy: string
-    timeUp: Date
+    readonly timeIn: Date
 
-    constructor(orderId: string, itemLineId: string, name: string, itemType: ItemType, timeUp: Date, madeBy: string) {
+    constructor(
+        readonly orderId: string,
+        readonly itemLineId: string,
+        readonly name: string,
+        readonly itemType: ItemType,
+        readonly timeUp: Date,
+        readonly madeBy: string,
+    ) {
         super()
-        this.orderId = orderId;
-        this.itemLineId = itemLineId;
-        this.name = name;
-        this.itemType = itemType;
         this.timeIn = DateHelper.UTCNow;
-        this.madeBy = madeBy;
-        this.timeUp = timeUp;
     }
 }
 

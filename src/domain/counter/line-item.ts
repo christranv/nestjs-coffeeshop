@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
-import { ItemType } from '../base/enums/ItemType';
-import { ItemStatus } from './ItemStatus';
-import { Order } from './Order';
+import { ItemType } from '../base/enums/item-type';
+import { ItemStatus } from './item-status';
+import { Order } from './order';
 
 @Entity()
 export class LineItem {

@@ -11,6 +11,7 @@ interface DatabaseConfig {
 
 const persistent = TypeOrmModule.forRootAsync({
   imports: [ConfigModule],
+  inject: [ConfigService],
   useFactory: async (configService: ConfigService) => {
     const config = configService.get<DatabaseConfig>('db.postgres');
     if (config == undefined) throw new Error('Missing DB config');
@@ -32,7 +33,6 @@ const persistent = TypeOrmModule.forRootAsync({
       logging: true,
     };
   },
-  inject: [ConfigService],
 });
 
 export { persistent };

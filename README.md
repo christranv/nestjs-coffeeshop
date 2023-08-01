@@ -19,12 +19,11 @@
 ## 🌱 Features
 - Support Postgres DB
 - Support Speedy Web Compiler (SWC)
+- Apply Domain-driven design
+- Apply CQRS
 
 ## 🗒 Feature Plan
 
-- Have Postgres data seeding
-- Apply DDD
-- Use CQRS
 - Support background job
 - Write unit test
 - Integrate task scheduling

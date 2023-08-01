@@ -1,5 +1,5 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
-import { ItemType } from '../base/enums/ItemType';
+import { ItemType } from '../base/enums/item-type';
 
 @Entity()
 export class KitchenOrder {

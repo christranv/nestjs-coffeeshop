@@ -1,5 +1,5 @@
 import { DataSource, DataSourceOptions } from "typeorm";
-import { Order } from "./src/domain/counter/Order";
+import { Order } from "./src/domain/counter/order";
 
 const options: DataSourceOptions = {
   name: 'default',

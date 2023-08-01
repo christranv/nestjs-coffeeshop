@@ -1,13 +1,13 @@
 import { Entity, PrimaryColumn, Column, OneToMany, JoinColumn } from 'typeorm';
-import { LineItem } from './LineItem';
-import { Location } from './Location';
-import { OrderUp } from './events/OrderUp';
-import { OrderStatus } from './OrderStatus';
-import { OrderSource } from './OrderSource';
-import { ItemStatus } from './ItemStatus';
+import { OrderSource } from './order-source';
+import { ItemStatus } from './item-status';
+import { AggregateRoot } from '@nestjs/cqrs';
+import { OrderUp } from './events/order-up';
+import { LineItem } from './line-item';
+import { OrderStatus } from './order-status';
 
 @Entity()
-export class Order {
+export class Order extends AggregateRoot {
   @PrimaryColumn()
   public id: string;
 
