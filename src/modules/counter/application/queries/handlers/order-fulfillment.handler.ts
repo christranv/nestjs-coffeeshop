@@ -6,15 +6,15 @@ import { Repository } from 'typeorm';
 import { GetFulfilledOrdersQuery } from '../impl';
 
 @QueryHandler(GetFulfilledOrdersQuery)
-export class GetFulfilledOrdersHandler
-    implements IQueryHandler<GetFulfilledOrdersQuery> {
+export class GetFulfilledOrdersHandler implements IQueryHandler<GetFulfilledOrdersQuery> {
+
     constructor(
         @InjectRepository(Order)
         private readonly orderRepository: Repository<Order>
     ) { }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async execute(_: GetFulfilledOrdersQuery) {
+    async execute(query: GetFulfilledOrdersQuery) {
         return this.orderRepository.findBy({
             orderStatus: OrderStatus.FULFILLED
         });
