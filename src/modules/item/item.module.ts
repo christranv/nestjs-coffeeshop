@@ -1,12 +1,12 @@
 import { Logger, Module, OnModuleDestroy } from '@nestjs/common';
-import { CqrsModule, EventBus, IEvent } from '@nestjs/cqrs';
+import { EventBus, IEvent } from '@nestjs/cqrs';
 import { Subject, takeUntil } from 'rxjs';
 import { CommandHandlers } from '../counter/application/commands/handlers';
 import { DomainEventHandlers } from '../counter/application/domain-event-handlers';
 import { QueryHandlers } from '../counter/application/queries/handlers';
 
 @Module({
-  imports: [CqrsModule],
+  imports: [],
   providers: [...CommandHandlers, ...QueryHandlers, ...DomainEventHandlers],
 })
 export class ItemModule implements OnModuleDestroy {
