@@ -1,13 +1,11 @@
 import { Logger, Module, OnModuleDestroy } from '@nestjs/common';
-import { CqrsModule, EventBus, IEvent } from '@nestjs/cqrs';
+import { EventBus, IEvent } from '@nestjs/cqrs';
+import { SharedModule } from '@src/shared/shared.module';
 import { Subject, takeUntil } from 'rxjs';
-import { CommandHandlers } from '../counter/application/commands/handlers';
-import { DomainEventHandlers } from '../counter/application/domain-event-handlers';
-import { QueryHandlers } from '../counter/application/queries/handlers';
 
 @Module({
-  imports: [CqrsModule],
-  providers: [...CommandHandlers, ...QueryHandlers, ...DomainEventHandlers],
+  imports: [SharedModule],
+  providers: [],
 })
 export class KitchenModule implements OnModuleDestroy {
   private destroy$ = new Subject<void>();

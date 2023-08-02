@@ -1,7 +1,7 @@
-import { ItemType } from "@/src/domain/base/enums/item-type";
-import { DateHelper } from "@/src/domain/base/helpers/date-helper";
-import { OrderSource } from "@/src/domain/counter/order-source";
-import { CommandType } from "../../../application/enums";
+import { CommandType } from "@src/modules/barista/application/enums";
+import { ItemType } from "@src/shared/domain/base/enums/item-type";
+import { DateHelper } from "@src/shared/domain/helpers/date-helper";
+import { OrderSource } from "../order-source";
 
 class CommandItem {
     readonly itemType: ItemType

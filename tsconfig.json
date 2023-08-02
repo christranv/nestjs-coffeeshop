@@ -21,7 +21,7 @@
       "@src/*": ["src/*"],
       "@modules/*": ["src/modules/*"],
       "@config/*": ["src/configs/*"],
-      "@libs/*": ["src/libs/*"],
+      "@libs/*": ["src/shared/*"],
       "@tests/*": ["tests/*"]
     }
   }

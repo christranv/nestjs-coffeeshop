@@ -4,10 +4,9 @@ import { Subject, takeUntil } from 'rxjs';
 import { CommandHandlers } from '../counter/application/commands/handlers';
 import { DomainEventHandlers } from '../counter/application/domain-event-handlers';
 import { QueryHandlers } from '../counter/application/queries/handlers';
-import { persistent } from './infrastructure/persistence/dependencyInjection';
 
 @Module({
-  imports: [persistent, CqrsModule],
+  imports: [CqrsModule],
   providers: [...CommandHandlers, ...QueryHandlers, ...DomainEventHandlers],
 })
 export class BaristaModule implements OnModuleDestroy {

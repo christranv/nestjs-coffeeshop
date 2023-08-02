@@ -1,10 +1,10 @@
+import { OrderUp } from "@src/modules/counter/domain/events/order-up";
+import { Item } from "@src/modules/counter/domain/item";
 import { ItemType } from "../../../../shared/domain/base/enums/item-type";
 import { DateHelper } from "../../../../shared/domain/helpers/date-helper";
-import { Item } from "../../../item/item";
-import { OrderUp } from "../../counter/events/order-up";
-import { BaseAggregateRoot } from "../../seedwork/base-entity";
+import { KitchenOrder } from "../kitchen-order";
 
-class KitchenOrder extends BaseAggregateRoot {
+class KitchenOrderIn {
     readonly itemName: string;
     timeUp: Date;
 
@@ -13,7 +13,6 @@ class KitchenOrder extends BaseAggregateRoot {
         readonly itemType: ItemType,
         readonly timeIn: Date,
     ) {
-        super();
         this.itemName = Item.GetItem(this.itemType).toString();
     }
 

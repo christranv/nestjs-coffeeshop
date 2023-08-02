@@ -4,7 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { persistent } from './infrastructure/persistent/di';
 
 @Module({
-  imports: [CqrsModule, persistent],
+  imports: [persistent, CqrsModule],
   providers: [],
 })
 export class SharedModule implements OnModuleDestroy {

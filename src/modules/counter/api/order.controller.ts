@@ -1,7 +1,7 @@
-import { GetFulfilledOrdersQuery } from '@/src/application/queries/impl';
-import { PlaceOrderCommand } from '@/src/domain/counter/commands/place-order.command';
 import { Controller, Get, HttpCode, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
+import { GetFulfilledOrdersQuery } from '../application/queries/impl';
+import { PlaceOrderCommand } from '../domain/commands/place-order.command';
 
 @Controller('api/v1/orders')
 export class OrderController {

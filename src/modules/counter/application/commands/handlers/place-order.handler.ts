@@ -1,8 +1,8 @@
-import { Order } from '@/src/domain/counter/order';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PlaceOrderCommand } from '@src/modules/counter/domain/commands/place-order.command';
+import { Order } from '@src/modules/counter/domain/order';
 import { Repository } from 'typeorm';
-import { PlaceOrderCommand } from '../../../domain/counter/commands/place-order.command';
 
 @CommandHandler(PlaceOrderCommand)
 export class PlaceOrderHandler implements ICommandHandler<PlaceOrderCommand> {

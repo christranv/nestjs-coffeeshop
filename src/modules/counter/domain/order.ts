@@ -1,10 +1,10 @@
+import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
 import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn } from 'typeorm';
-import { Item } from '../item/item';
-import { BaseAggregateRoot } from '../seedwork/base-entity';
 import { PlaceOrderCommand } from './commands/place-order.command';
 import { BaristaOrderIn, KitchenOrderIn } from './events/order-in';
 import { OrderUp } from './events/order-up';
 import { OrderUpdate } from './events/order-update';
+import { Item } from './item';
 import { ItemStatus } from './item-status';
 import { LineItem } from './line-item';
 import { OrderSource } from './order-source';

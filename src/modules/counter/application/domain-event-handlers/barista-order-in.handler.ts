@@ -1,8 +1,8 @@
-import { BaristaItem } from "@/src/domain/barista/barista-item";
-import { DateHelper } from "@/src/domain/base/helpers/date-helper";
-import { BaristaOrderIn } from "@/src/domain/counter/events/order-in";
-import { Item } from "@/src/domain/item/item";
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
+import { BaristaItem } from "@src/modules/barista/domain/barista-item";
+import { DateHelper } from "@src/shared/domain/helpers/date-helper";
+import { BaristaOrderIn } from "../../domain/events/order-in";
+import { Item } from "../../domain/item";
 
 @EventsHandler(BaristaOrderIn)
 export class BaristaOrderInHandler implements IEventHandler<BaristaOrderIn> {

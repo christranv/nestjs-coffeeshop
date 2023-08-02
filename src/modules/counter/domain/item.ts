@@ -1,4 +1,4 @@
-import { ItemType } from "../../shared/domain/base/enums/item-type";
+import { ItemType } from "../../../shared/domain/base/enums/item-type";
 
 export class Item {
     price: number;

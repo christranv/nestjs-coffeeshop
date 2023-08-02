@@ -1,5 +1,5 @@
+import { ItemType } from '@src/shared/domain/base/enums/item-type';
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
-import { ItemType } from '../../../../shared/domain/base/enums/item-type';
 import { ItemStatus } from './item-status';
 import { Order } from './order';
 

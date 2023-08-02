@@ -1,6 +1,6 @@
-import { ItemType } from "../../../../../shared/domain/base/enums/item-type";
-import { DateHelper } from "../../../../../shared/domain/helpers/date-helper";
-import { BaseEvent } from "../../seedwork/base-event";
+import { ItemType } from "@src/shared/domain/base/enums/item-type";
+import { DateHelper } from "@src/shared/domain/helpers/date-helper";
+import { BaseEvent } from "@src/shared/domain/seedwork/base-event";
 
 export class OrderIn extends BaseEvent {
     readonly timeIn: Date

@@ -1,9 +1,9 @@
+import { OrderUp } from '@src/modules/counter/domain/events/order-up';
+import { Item } from '@src/modules/counter/domain/item';
+import { ItemType } from '@src/shared/domain/base/enums/item-type';
+import { DateHelper } from '@src/shared/domain/helpers/date-helper';
+import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { ItemType } from '../../../../shared/domain/base/enums/item-type';
-import { DateHelper } from '../../../../shared/domain/helpers/date-helper';
-import { OrderUp } from '../counter/events/order-up';
-import { Item } from '../item/item';
-import { BaseAggregateRoot } from '../seedwork/base-entity';
 
 @Entity()
 export class KitchenOrder extends BaseAggregateRoot {
