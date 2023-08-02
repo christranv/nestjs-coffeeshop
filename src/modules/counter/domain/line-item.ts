@@ -1,5 +1,5 @@
 import { ItemType } from '@src/shared/domain/base/enums/item-type';
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, Relation } from 'typeorm';
 import { ItemStatus } from './item-status';
 import { Order } from './order';
 
@@ -23,9 +23,9 @@ export class LineItem {
   @Column()
   public isBaristaOrder: boolean;
 
-  // @ManyToOne(() => Order, (order) => order.lineItems)
-  // @JoinColumn()
-  order: Order;
+  @ManyToOne(() => Order, (order) => order.lineItems)
+  @JoinColumn()
+  order: Relation<Order>;
 
   constructor(itemType: ItemType, name: string, price: number, itemStatus: ItemStatus, isBaristaOrder: boolean) {
     this.itemType = itemType;

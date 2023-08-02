@@ -1,5 +1,5 @@
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn, Relation } from 'typeorm';
 import { PlaceOrderCommand } from './commands/place-order.command';
 import { BaristaOrderIn, KitchenOrderIn } from './events/order-in';
 import { OrderUp } from './events/order-up';
@@ -27,8 +27,8 @@ export class Order extends BaseAggregateRoot {
   @Column('int')
   public location: Location;
 
-  // @OneToMany(() => LineItem, lineItem => lineItem.order)
-  public lineItems: LineItem[];
+  @OneToMany(() => LineItem, (lineItem) => lineItem.order)
+  public lineItems: Relation<LineItem[]>;
 
   constructor(orderSource: OrderSource, loyaltyMemberId: string, orderStatus: OrderStatus, location: Location) {
     super()
