@@ -1,29 +1,16 @@
-import { Logger, Module, OnModuleDestroy } from '@nestjs/common';
-import { EventBus, IEvent } from '@nestjs/cqrs';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { SharedModule } from '@src/shared/shared.module';
-import { Subject, takeUntil } from 'rxjs';
 import { CommandHandlers } from './application/commands/handlers';
 import { DomainEventHandlers } from './application/domain-event-handlers';
 import { QueryHandlers } from './application/queries/handlers';
+import { LineItem } from './domain/line-item';
+import { Order } from './domain/order';
 
 @Module({
-  imports: [SharedModule],
+  imports: [SharedModule, TypeOrmModule.forFeature([Order, LineItem])],
   providers: [...CommandHandlers, ...QueryHandlers, ...DomainEventHandlers],
 })
-export class CounterModule implements OnModuleDestroy {
-  private destroy$ = new Subject<void>();
+export class CounterModule {
 
-  constructor(private eventBus: EventBus) {
-    this.eventBus
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((event: IEvent) => {
-        Logger.debug("Processing event")
-        Logger.debug(event)
-      });
-  }
-
-  onModuleDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 }

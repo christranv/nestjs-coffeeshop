@@ -6,6 +6,7 @@ import { persistent } from './infrastructure/persistent/di';
 @Module({
   imports: [persistent, CqrsModule],
   providers: [],
+  exports: [CqrsModule]
 })
 export class SharedModule implements OnModuleDestroy {
   private destroy$ = new Subject<void>();

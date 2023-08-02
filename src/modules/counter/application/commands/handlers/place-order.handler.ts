@@ -14,7 +14,7 @@ export class PlaceOrderHandler implements ICommandHandler<PlaceOrderCommand> {
 
     async execute(command: PlaceOrderCommand) {
         if (!command) {
-            throw new Error("Invalid ")
+            throw new Error("Invalid")
         }
 
         const order = Order.from(command);

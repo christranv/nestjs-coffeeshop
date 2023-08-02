@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { validate } from './config/validation';
 import { BaristaModule } from './modules/barista/barista.module';
-import { OrderController } from './modules/counter/api/order.controller';
 import { CounterModule } from './modules/counter/counter.module';
 import { KitchenModule } from './modules/kitchen/kitchen.module';
 
@@ -19,6 +18,6 @@ import { KitchenModule } from './modules/kitchen/kitchen.module';
     CounterModule,
     KitchenModule
   ],
-  controllers: [OrderController],
 })
-export class AppModule { }
+export class AppModule {
+}

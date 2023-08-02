@@ -1,3 +1,3 @@
-import { BaristaOrderIn } from "@/src/domain/counter/events/order-in";
+import { BaristaOrderInHandler } from "./barista-order-in.handler";
 
-export const DomainEventHandlers = [BaristaOrderIn];
+export const DomainEventHandlers = [BaristaOrderInHandler];

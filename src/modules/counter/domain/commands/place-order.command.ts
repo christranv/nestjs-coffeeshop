@@ -1,4 +1,4 @@
-import { CommandType } from "@src/modules/barista/application/enums";
+import { CommandType } from "@src/modules/counter/domain/enums";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { DateHelper } from "@src/shared/domain/helpers/date-helper";
 import { OrderSource } from "../order-source";

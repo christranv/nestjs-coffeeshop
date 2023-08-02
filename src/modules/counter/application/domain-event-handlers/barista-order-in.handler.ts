@@ -12,30 +12,30 @@ export class BaristaOrderInHandler implements IEventHandler<BaristaOrderIn> {
         const itemName = Item.GetItem(event.itemType).toString();
         var baristaItem = BaristaItem.from(event.itemType, itemName, DateHelper.UTCNow);
 
-        setTimeout()
-        await Task.Delay(CalculateDelay(@event.ItemType), cancellationToken);
+        // setTimeout()
+        // await Task.Delay(CalculateDelay(@event.ItemType), cancellationToken);
 
-        baristaItem.setTimeUp(@event.OrderId, @event.ItemLineId, DateTime.UtcNow);
+        // baristaItem.setTimeUp(@event.OrderId, @event.ItemLineId, DateTime.UtcNow);
 
-        await _baristaItemRepository.AddAsync(baristaItem, cancellationToken: cancellationToken);
+        // await _baristaItemRepository.AddAsync(baristaItem, cancellationToken: cancellationToken);
 
-        await baristaItem.RelayAndPublishEvents(_publisher, cancellationToken);
+        // await baristaItem.RelayAndPublishEvents(_publisher, cancellationToken);
     }
 
-    private static CalculateDelay(ItemType itemType) {
-        switch (itemType) {
-            case ItemType.COFFEE_BLACK:
-                return 5
-            case ItemType.COFFEE_WITH_ROOM:
-                return 5
-            case ItemType.ESPRESSO:
-                return 7
-            case ItemType.ESPRESSO_DOUBLE:
-                return 7
-            case ItemType.CAPPUCCINO:
-                return 10
-            default:
-                return 3
-        };
-    }
+    // private static CalculateDelay(ItemType itemType) {
+    //     switch (itemType) {
+    //         case ItemType.COFFEE_BLACK:
+    //             return 5
+    //         case ItemType.COFFEE_WITH_ROOM:
+    //             return 5
+    //         case ItemType.ESPRESSO:
+    //             return 7
+    //         case ItemType.ESPRESSO_DOUBLE:
+    //             return 7
+    //         case ItemType.CAPPUCCINO:
+    //             return 10
+    //         default:
+    //             return 3
+    //     };
+    // }
 }
