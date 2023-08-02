@@ -13,7 +13,8 @@ export class GetFulfilledOrdersHandler
         private readonly orderRepository: Repository<Order>
     ) { }
 
-    async execute(query: GetFulfilledOrdersQuery) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async execute(_: GetFulfilledOrdersQuery) {
         return this.orderRepository.findBy({
             orderStatus: OrderStatus.FULFILLED
         });
