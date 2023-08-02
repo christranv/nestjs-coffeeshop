@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { ApiModule } from './api/api.module';
+import { AppModule } from './api.module';
 // import * as compression from 'compression';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(ApiModule);
+  const app = await NestFactory.create(AppModule);
   // app.use(compression());
 
   const configService = app.get(ConfigService);
