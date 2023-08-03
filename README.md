@@ -36,4 +36,5 @@
 ## 🛠 Installation
 - `docker-compose up`
 - `npm run migration:generate --name=Init`
+- `npm run migration:run`
 - `npm run start`

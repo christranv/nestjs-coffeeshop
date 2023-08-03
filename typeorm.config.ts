@@ -1,6 +1,6 @@
-import { DataSource, DataSourceOptions } from "typeorm";
+import { DataSource } from "typeorm";
 
-const options: DataSourceOptions = {
+export default new DataSource({
   name: 'default',
   type: 'postgres',
   host: 'localhost',
@@ -9,10 +9,6 @@ const options: DataSourceOptions = {
   password: 'pgdb111',
   database: 'coffeeshop',
   logging: true,
-  synchronize: false,
-  entities: ["src/domain/**/*{.ts,.js}"],
-  migrations: ["src/infrastructure/persistence/migration/**/*.ts"],
-  subscribers: ["src/infrastructure/persistence/subscriber/**/*.ts"],
-};
-
-export default new DataSource(options);
+  entities: ["src/**/domain/**/*.ts"],
+  migrations: ["migrations/*.ts"],
+})

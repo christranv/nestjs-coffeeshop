@@ -27,7 +27,7 @@ const persistent = TypeOrmModule.forRootAsync({
             password: config.password,
             database: config.database,
             autoLoadEntities: true,
-            synchronize: true,
+            synchronize: false,
             seeds: ['src/**/seeds/*.seeder.ts'],
             logging: true,
         };

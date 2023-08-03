@@ -9,6 +9,7 @@ import { OrderUpdate } from './events/order-update';
 import { Item } from './item';
 import { ItemStatus } from './item-status';
 import { LineItem } from './line-item';
+import { Location } from './location';
 import { OrderSource } from './order-source';
 import { OrderStatus } from './order-status';
 
