@@ -19,15 +19,14 @@
 ## 🌱 Features
 - Integrate Postgres DB
 - Integrate data seeding
-- Support Speedy Web Compiler (SWC)
 - Apply Domain-driven design
 - Apply CQRS
 
 ## 🗒 Feature Plan
 
 - Support background job
-- Write unit test
 - Integrate task scheduling
+- Write unit test
 
 ## 🏗 Clean Architecture
 <p align="center">
