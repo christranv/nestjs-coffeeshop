@@ -1,4 +1,5 @@
 import { ItemType } from '@src/shared/domain/base/enums/item-type';
+import { DomainException } from '@src/shared/domain/exceptions/domain.exception';
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
 import { Column, Entity, OneToMany, PrimaryColumn, Relation } from 'typeorm';
 import { PlaceOrderCommand } from './commands/place-order.command';
@@ -45,7 +46,7 @@ export class Order extends BaseAggregateRoot {
     if (command.baristaItems.length) {
       for (const baristaItem of command.baristaItems) {
         const item = itemMap.get(baristaItem.itemType);
-        if (!item) throw new Error("Item not found!")
+        if (!item) throw new DomainException("Item not found!")
         const lineItem = new LineItem(baristaItem.itemType, item.name, item.price, ItemStatus.IN_PROGRESS, true);
 
         order.apply(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
@@ -58,7 +59,7 @@ export class Order extends BaseAggregateRoot {
     if (command.kitchenItems.length) {
       for (const kitchenItem of command.kitchenItems) {
         const item = itemMap.get(kitchenItem.itemType);
-        if (!item) throw new Error("Item not found!")
+        if (!item) throw new DomainException("Item not found!")
         const lineItem = new LineItem(kitchenItem.itemType, item.toString(), item.price, ItemStatus.IN_PROGRESS, false);
 
         order.addDomainEvent(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
