@@ -17,7 +17,8 @@
 - [🛠 Installation](#-installation)
 
 ## 🌱 Features
-- Support Postgres DB
+- Integrate Postgres DB
+- Integrate data seeding
 - Support Speedy Web Compiler (SWC)
 - Apply Domain-driven design
 - Apply CQRS

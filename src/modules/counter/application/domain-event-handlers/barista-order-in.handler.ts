@@ -1,13 +1,12 @@
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { BaristaOrderIn } from "../../domain/events/order-in";
-import { Item } from "../../domain/item";
 
 @EventsHandler(BaristaOrderIn)
 export class BaristaOrderInHandler implements IEventHandler<BaristaOrderIn> {
 
     handle(event: BaristaOrderIn) {
-        const itemName = Item.GetItem(event.itemType).toString();
+        // const itemName = Item.GetItem(event.itemType).toString();
         // var baristaItem = BaristaItem.from(event.itemType, itemName, DateHelper.UTCNow);
 
         // setTimeout()

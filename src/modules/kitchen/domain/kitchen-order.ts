@@ -1,5 +1,4 @@
 import { OrderUp } from '@src/modules/counter/domain/events/order-up';
-import { Item } from '@src/modules/counter/domain/item';
 import { ItemType } from '@src/shared/domain/base/enums/item-type';
 import { DateHelper } from '@src/shared/domain/helpers/date-helper';
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
@@ -22,21 +21,21 @@ export class KitchenOrder extends BaseAggregateRoot {
   @Column()
   public timeUp: Date;
 
-  private constructor(id: string, itemType: ItemType, timeIn: Date) {
+  private constructor(id: string, itemType: ItemType, itemName: string, timeIn: Date) {
     super()
     this.id = id;
     this.itemType = itemType;
-    this.itemName = Item.GetItem(itemType).toString();
+    this.itemName = itemName;
     this.timeIn = timeIn;
   }
 
   setTimeUp(itemLineId: string, timeUp: Date): KitchenOrder {
-    this.addDomainEvent(new OrderUp(this.id, itemLineId, Item.GetItem(this.itemType).toString(), this.itemType, DateHelper.UTCNow, "chris"));
+    this.addDomainEvent(new OrderUp(this.id, itemLineId, this.itemName, this.itemType, DateHelper.UTCNow, "chris"));
     this.timeUp = timeUp;
     return this;
   }
 
-  static from(orderId: string, itemType: ItemType, timeIn: Date): KitchenOrder {
-    return new KitchenOrder(orderId, itemType, timeIn);
+  static from(orderId: string, itemType: ItemType, itemName: string, timeIn: Date): KitchenOrder {
+    return new KitchenOrder(orderId, itemType, itemName, timeIn);
   }
 }

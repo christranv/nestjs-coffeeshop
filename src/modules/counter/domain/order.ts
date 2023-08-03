@@ -1,3 +1,4 @@
+import { ItemType } from '@src/shared/domain/base/enums/item-type';
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
 import { Column, Entity, OneToMany, PrimaryColumn, Relation } from 'typeorm';
 import { PlaceOrderCommand } from './commands/place-order.command';
@@ -38,13 +39,14 @@ export class Order extends BaseAggregateRoot {
     this.location = location;
   }
 
-  static from(command: PlaceOrderCommand): Order {
+  static from(command: PlaceOrderCommand, itemMap: Map<ItemType, Item>): Order {
     const order = new Order(command.orderSource, command.loyaltyMemberId, OrderStatus.IN_PROGRESS, command.location);
 
     if (command.baristaItems.length) {
       for (const baristaItem of command.baristaItems) {
-        const item = Item.GetItem(baristaItem.itemType);
-        const lineItem = new LineItem(baristaItem.itemType, item.toString(), item.price, ItemStatus.IN_PROGRESS, true);
+        const item = itemMap.get(baristaItem.itemType);
+        if (!item) throw new Error("Item not found!")
+        const lineItem = new LineItem(baristaItem.itemType, item.name, item.price, ItemStatus.IN_PROGRESS, true);
 
         order.apply(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
         order.apply(new BaristaOrderIn(order.id, lineItem.id, lineItem.itemType));
@@ -55,7 +57,8 @@ export class Order extends BaseAggregateRoot {
 
     if (command.kitchenItems.length) {
       for (const kitchenItem of command.kitchenItems) {
-        const item = Item.GetItem(kitchenItem.itemType);
+        const item = itemMap.get(kitchenItem.itemType);
+        if (!item) throw new Error("Item not found!")
         const lineItem = new LineItem(kitchenItem.itemType, item.toString(), item.price, ItemStatus.IN_PROGRESS, false);
 
         order.addDomainEvent(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));

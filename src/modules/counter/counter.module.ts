@@ -5,11 +5,12 @@ import { OrderController } from './api/order.controller';
 import { CommandHandlers } from './application/commands/handlers';
 import { DomainEventHandlers } from './application/domain-event-handlers';
 import { QueryHandlers } from './application/queries/handlers';
+import { Item } from './domain/item';
 import { LineItem } from './domain/line-item';
 import { Order } from './domain/order';
 
 @Module({
-  imports: [SharedModule, TypeOrmModule.forFeature([Order, LineItem])],
+  imports: [SharedModule, TypeOrmModule.forFeature([Order, Item, LineItem])],
   providers: [...CommandHandlers, ...QueryHandlers, ...DomainEventHandlers],
   controllers: [OrderController]
 })
