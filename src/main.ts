@@ -1,8 +1,9 @@
 import { RequestMethod } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './shared/api/all-exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,6 +12,7 @@ async function bootstrap() {
     exclude: [{ path: 'health', method: RequestMethod.GET }],
   })
 
+  // Config Swagger
   const config = new DocumentBuilder()
     .setTitle('NestJS Coffee Shop')
     .setDescription('The Coffee Shop API document')
@@ -19,9 +21,14 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
 
+  // Config port
   const configService = app.get(ConfigService);
   const port = configService.get<string>('http.port');
   if (!port) throw new Error('Missing PORT config');
+
+  // Config exception filter
+  const adapterHost = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new AllExceptionsFilter(adapterHost));
 
   await app.listen(port);
 }
