@@ -1,8 +1,8 @@
 import { Controller, Get, HttpCode } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { API_TAG_BARISTA } from '@src/shared/api/constant';
+import { API_TAG_KITCHEN } from '@src/shared/api/constant';
 
-@ApiTags(API_TAG_BARISTA)
+@ApiTags(API_TAG_KITCHEN)
 @Controller('v1/kitchens')
 export class KitchenController {
   @Get()
