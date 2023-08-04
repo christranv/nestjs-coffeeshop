@@ -49,7 +49,7 @@ export class BaristaItem extends BaseAggregateRoot {
         this.itemType,
         DateHelper.UTCNow,
         timeUp,
-        'teesee',
+        'chris',
       ),
     );
     this.timeUp = timeUp;

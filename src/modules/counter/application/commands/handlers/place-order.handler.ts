@@ -17,10 +17,6 @@ export class PlaceOrderHandler implements ICommandHandler<PlaceOrderCommand> {
     ) { }
 
     async execute(command: PlaceOrderCommand) {
-        if (!command) {
-            throw new Error("Invalid")
-        }
-
         const itemTypes = command.baristaItems.concat(command.kitchenItems).map(_ => _.itemType);
         const items = await this.itemRepository.findBy({ id: In(itemTypes) })
         const itemMap = new Map<ItemType, Item>();

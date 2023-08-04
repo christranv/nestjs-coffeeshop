@@ -1,10 +1,10 @@
 import { ItemType } from '@src/shared/domain/base/enums/item-type';
+import { BaristaOrderIn, KitchenOrderIn } from '@src/shared/domain/events/order-in';
 import { DomainException } from '@src/shared/domain/exceptions/domain.exception';
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
 import { Column, Entity, OneToMany, PrimaryColumn, Relation } from 'typeorm';
 import { OrderUp } from '../../../shared/domain/events/order-up';
 import { PlaceOrderCommand } from './commands/place-order.command';
-import { BaristaOrderIn, KitchenOrderIn } from './events/order-in';
 import { OrderUpdate } from './events/order-update';
 import { Item } from './item';
 import { ItemStatus } from './item-status';

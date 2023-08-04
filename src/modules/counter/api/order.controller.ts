@@ -16,12 +16,12 @@ export class OrderController {
   @Get()
   @HttpCode(200)
   async getFulfilledOrders() {
-    return await this.queryBus.execute(new GetFulfilledOrdersQuery());
+    return await this.queryBus.execute(new GetFulfilledOrdersQuery);
   }
 
   @Post()
   @HttpCode(200)
   async place(command: PlaceOrderCommand) {
-    await await this.commandBus.execute(command);
+    await this.commandBus.execute(command);
   }
 }

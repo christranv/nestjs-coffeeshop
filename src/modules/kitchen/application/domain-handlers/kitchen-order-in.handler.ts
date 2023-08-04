@@ -1,14 +1,18 @@
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
+import { InjectRepository } from "@nestjs/typeorm";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
-import { BaristaOrderIn, KitchenOrderIn } from "@src/shared/domain/events/order-in";
+import { KitchenOrderIn } from "@src/shared/domain/events/order-in";
 import { DateHelper } from "@src/shared/domain/helpers/date-helper";
 import { Repository } from "typeorm";
 import { KitchenOrder } from "../../domain/kitchen-order";
 
-@EventsHandler(BaristaOrderIn)
+@EventsHandler(KitchenOrderIn)
 export class KitchenOrderInHandler implements IEventHandler<KitchenOrderIn> {
 
-    constructor(private readonly repository: Repository<KitchenOrderIn>) { }
+    constructor(
+        @InjectRepository(KitchenOrder)
+        private readonly repository: Repository<KitchenOrder>
+    ) { }
 
     async handle(event: KitchenOrderIn): Promise<void> {
         const kitchenOrder = KitchenOrder.from(event.orderId, event.itemType, event.itemName, event.timeIn);

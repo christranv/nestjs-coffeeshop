@@ -1,3 +1,3 @@
-import { BaristaOrderInHandler } from "./barista-order-in.handler";
+import { OrderUpdateHandler } from "./order-update.handler";
 
-export const DomainEventHandlers = [BaristaOrderInHandler];
+export const DomainEventHandlers = [OrderUpdateHandler];
