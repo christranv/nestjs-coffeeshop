@@ -50,8 +50,8 @@ export class Order extends BaseAggregateRoot {
         if (!item) throw new DomainException("Item not found!")
         const lineItem = new LineItem(baristaItem.itemType, item.name, item.price, ItemStatus.IN_PROGRESS, true);
 
-        order.apply(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
-        order.apply(new BaristaOrderIn(order.id, lineItem.id, lineItem.itemType, lineItem.name));
+        order.addDomainEvent(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
+        order.addDomainEvent(new BaristaOrderIn(order.id, lineItem.id, lineItem.itemType, lineItem.name));
 
         order.lineItems.push(lineItem);
       }
@@ -80,7 +80,7 @@ export class Order extends BaseAggregateRoot {
     const item = this.lineItems.find(i => i.id == orderUp.itemLineId);
     if (!!item) {
       item.itemStatus = ItemStatus.FULFILLED;
-      this.apply(new OrderUpdate(this.id, item.id, item.itemType, OrderStatus.FULFILLED, orderUp.madeBy));
+      this.addDomainEvent(new OrderUpdate(this.id, item.id, item.itemType, OrderStatus.FULFILLED, orderUp.madeBy));
     }
 
     // if there are both barista and kitchen items is fulfilled then checking status and change order to Fulfilled
