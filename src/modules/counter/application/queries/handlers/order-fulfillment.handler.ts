@@ -15,7 +15,7 @@ export class GetFulfilledOrdersHandler implements IQueryHandler<GetFulfilledOrde
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async execute(_: GetFulfilledOrdersQuery): Promise<Order[]> {
-        return this.orderRepository.findBy({
+        return await this.orderRepository.findBy({
             orderStatus: OrderStatus.FULFILLED
         });
     }

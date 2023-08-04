@@ -16,8 +16,8 @@ export class HealthController {
 
     @Get()
     @HealthCheck()
-    check() {
-        return this.health.check(
+    async check() {
+        return await this.health.check(
             [() =>
                 this.disk.checkStorage('disk health', {
                     thresholdPercent: 0.5,

@@ -12,7 +12,7 @@
 
 **Table of Contents**
 - [🌱 Features](#-features)
-- [🗒 Feature Plan](#-feature-plan)
+- [🗒 Doing](#-doing)
 - [🏗 Clean Architecture](#-clean-architecture)
 - [🛠 Installation](#-installation)
 
@@ -22,7 +22,7 @@
 - Apply Domain-driven design
 - Apply CQRS
 
-## 🗒 Feature Plan
+## 🗒 Doing
 
 - Support background job
 - Integrate task scheduling

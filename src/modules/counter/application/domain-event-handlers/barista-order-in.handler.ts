@@ -5,7 +5,7 @@ import { BaristaOrderIn } from "../../domain/events/order-in";
 @EventsHandler(BaristaOrderIn)
 export class BaristaOrderInHandler implements IEventHandler<BaristaOrderIn> {
 
-    handle(event: BaristaOrderIn) {
+    async handle(event: BaristaOrderIn): Promise<void> {
         // const itemName = Item.GetItem(event.itemType).toString();
         // var baristaItem = BaristaItem.from(event.itemType, itemName, DateHelper.UTCNow);
 
