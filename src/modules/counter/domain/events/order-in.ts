@@ -9,6 +9,7 @@ export class OrderIn extends BaseEvent {
         readonly orderId: string,
         readonly itemLineId: string,
         readonly itemType: ItemType,
+        readonly itemName: string,
     ) {
         super();
         this.timeIn = DateHelper.UTCNow
@@ -16,13 +17,13 @@ export class OrderIn extends BaseEvent {
 }
 
 export class BaristaOrderIn extends OrderIn {
-    constructor(orderId: string, itemLineId: string, itemType: ItemType) {
-        super(orderId, itemLineId, itemType)
+    constructor(orderId: string, itemLineId: string, itemType: ItemType, itemName: string) {
+        super(orderId, itemLineId, itemType, itemName)
     }
 }
 
 export class KitchenOrderIn extends OrderIn {
-    constructor(orderId: string, itemLineId: string, itemType: ItemType) {
-        super(orderId, itemLineId, itemType);
+    constructor(orderId: string, itemLineId: string, itemType: ItemType, itemName: string) {
+        super(orderId, itemLineId, itemType, itemName);
     }
 }

@@ -51,7 +51,7 @@ export class Order extends BaseAggregateRoot {
         const lineItem = new LineItem(baristaItem.itemType, item.name, item.price, ItemStatus.IN_PROGRESS, true);
 
         order.apply(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
-        order.apply(new BaristaOrderIn(order.id, lineItem.id, lineItem.itemType));
+        order.apply(new BaristaOrderIn(order.id, lineItem.id, lineItem.itemType, lineItem.name));
 
         order.lineItems.push(lineItem);
       }
@@ -64,7 +64,7 @@ export class Order extends BaseAggregateRoot {
         const lineItem = new LineItem(kitchenItem.itemType, item.toString(), item.price, ItemStatus.IN_PROGRESS, false);
 
         order.addDomainEvent(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
-        order.addDomainEvent(new KitchenOrderIn(order.id, lineItem.id, lineItem.itemType));
+        order.addDomainEvent(new KitchenOrderIn(order.id, lineItem.id, lineItem.itemType, lineItem.name));
 
         order.lineItems.push(lineItem);
       }
