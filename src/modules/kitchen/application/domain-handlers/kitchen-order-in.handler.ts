@@ -1,6 +1,6 @@
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
-import { BaristaOrderIn, KitchenOrderIn } from "@src/modules/counter/domain/events/order-in";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
+import { BaristaOrderIn, KitchenOrderIn } from "@src/shared/domain/events/order-in";
 import { DateHelper } from "@src/shared/domain/helpers/date-helper";
 import { Repository } from "typeorm";
 import { KitchenOrder } from "../../domain/kitchen-order";
