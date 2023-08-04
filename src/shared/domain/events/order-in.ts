@@ -1,8 +1,8 @@
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { DateHelper } from "@src/shared/domain/helpers/date-helper";
-import { BaseEvent } from "@src/shared/domain/seedwork/base-event";
+import { BaseDomainEvent } from "@src/shared/domain/seedwork/base-domain-event";
 
-export class OrderIn extends BaseEvent {
+export class OrderIn extends BaseDomainEvent {
     readonly timeIn: Date
 
     constructor(

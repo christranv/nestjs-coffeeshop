@@ -1,8 +1,7 @@
 import { ItemType } from '@src/shared/domain/base/enums/item-type';
-import { DateHelper } from '@src/shared/domain/helpers/date-helper';
+import { OrderUp } from '@src/shared/domain/events/order-up';
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { BaristaOrderUp } from './events/barista-order-up';
 
 @Entity()
 export class BaristaItem extends BaseAggregateRoot {
@@ -42,12 +41,11 @@ export class BaristaItem extends BaseAggregateRoot {
     timeUp: Date,
   ): BaristaItem {
     this.addDomainEvent(
-      new BaristaOrderUp(
+      new OrderUp(
         orderId,
         itemLineId,
         this.itemName,
         this.itemType,
-        DateHelper.UTCNow,
         timeUp,
         'chris',
       ),

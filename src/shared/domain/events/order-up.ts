@@ -1,8 +1,8 @@
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { DateHelper } from "@src/shared/domain/helpers/date-helper";
-import { BaseEvent } from "@src/shared/domain/seedwork/base-event";
+import { BaseDomainEvent } from "@src/shared/domain/seedwork/base-domain-event";
 
-export class OrderUp extends BaseEvent {
+export class OrderUp extends BaseDomainEvent {
     readonly timeIn: Date
 
     constructor(
@@ -15,17 +15,5 @@ export class OrderUp extends BaseEvent {
     ) {
         super()
         this.timeIn = DateHelper.UTCNow;
-    }
-}
-
-class BaristaOrderUp extends OrderUp {
-    constructor(orderId: string, itemLineId: string, name: string, itemType: ItemType, timeUp: Date, madeBy: string) {
-        super(orderId, itemLineId, name, itemType, timeUp, madeBy)
-    }
-}
-
-class KitchenOrderUp extends OrderUp {
-    constructor(orderId: string, itemLineId: string, name: string, itemType: ItemType, timeUp: Date, madeBy: string) {
-        super(orderId, itemLineId, name, itemType, timeUp, madeBy)
     }
 }

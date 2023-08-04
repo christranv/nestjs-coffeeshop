@@ -5,7 +5,7 @@ interface IDomainEvent {
   metadata: Map<string, object>;
 }
 
-export abstract class BaseEvent implements IDomainEvent {
+export abstract class BaseDomainEvent implements IDomainEvent {
   // protected eventType;
   // public EventType:string => construct;
   createdAt: Date = DateHelper.UTCNow;
