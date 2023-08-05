@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { BaseCommandHandler } from "@src/shared/application/seedwork/base.handler";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { KitchenOrderIn } from "@src/shared/domain/events/order-in";
-import { DateHelper } from "@src/shared/domain/helpers/date-helper";
+import { DateHelper } from "@src/shared/domain/helpers/date.helper";
 import { DataSource, Repository } from "typeorm";
 import { KitchenOrder } from "../../domain/kitchen-order";
 

@@ -1,6 +1,6 @@
 import { ItemType } from '@src/shared/domain/base/enums/item-type';
 import { OrderUp } from '@src/shared/domain/events/order-up';
-import { DateHelper } from '@src/shared/domain/helpers/date-helper';
+import { DateHelper } from '@src/shared/domain/helpers/date.helper';
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 

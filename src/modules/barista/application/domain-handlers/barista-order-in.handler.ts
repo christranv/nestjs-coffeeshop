@@ -2,7 +2,7 @@ import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { BaristaOrderIn } from "@src/shared/domain/events/order-in";
-import { DateHelper } from "@src/shared/domain/helpers/date-helper";
+import { DateHelper } from "@src/shared/domain/helpers/date.helper";
 import { Repository } from "typeorm";
 import { BaristaItem } from "../../domain/barista-item";
 

@@ -18,7 +18,7 @@ const persistent = TypeOrmModule.forRootAsync({
     // to configure the DataSourceOptions.
     useFactory: async (configService: ConfigService): Promise<TypeOrmModuleOptions & SeederOptions> => {
         const config = configService.get<DatabaseConfig>('db.postgres');
-        if (config == undefined) throw new Error('Missing DB config');
+        if (!config) throw new Error('Missing DB config');
         return {
             type: 'postgres',
             host: config.url,

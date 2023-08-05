@@ -3,7 +3,8 @@ import {
     Catch,
     ExceptionFilter,
     HttpException,
-    HttpStatus
+    HttpStatus,
+    NotFoundException
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 import { DomainException } from '../domain/exceptions/domain.exception';
@@ -24,7 +25,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
             case HttpException:
                 httpStatus = (exception as HttpException).getStatus()
                 break;
-            case DomainException:
+            case DomainException || NotFoundException:
                 httpStatus = HttpStatus.BAD_REQUEST;
                 break;
             default:

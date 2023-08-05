@@ -1,6 +1,6 @@
 import { CommandType } from "@src/modules/counter/domain/enums";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
-import { DateHelper } from "@src/shared/domain/helpers/date-helper";
+import { DateHelper } from "@src/shared/domain/helpers/date.helper";
 import { Location } from "../location";
 import { OrderSource } from "../order-source";
 

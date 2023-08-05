@@ -1,4 +1,4 @@
-import { DateHelper } from "../helpers/date-helper";
+import { DateHelper } from "../helpers/date.helper";
 
 interface IDomainEvent {
   createdAt: Date;

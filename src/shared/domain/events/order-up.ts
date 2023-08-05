@@ -1,5 +1,5 @@
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
-import { DateHelper } from "@src/shared/domain/helpers/date-helper";
+import { DateHelper } from "@src/shared/domain/helpers/date.helper";
 import { BaseDomainEvent } from "@src/shared/domain/seedwork/base-domain-event";
 
 export class OrderUp extends BaseDomainEvent {
