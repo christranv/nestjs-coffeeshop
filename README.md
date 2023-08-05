@@ -12,21 +12,16 @@
 
 **Table of Contents**
 - [🌱 Features](#-features)
-- [🗒 Doing](#-doing)
 - [🏗 Clean Architecture](#-clean-architecture)
 - [🛠 Installation](#-installation)
 
 ## 🌱 Features
-- Integrate Postgres DB
-- Integrate data seeding
+- Support Postgres DB
+- Support data seeding
 - Apply Domain-driven design
 - Apply CQRS
-
-## 🗒 Doing
-
 - Support background job
-- Integrate task scheduling
-- Write unit test
+- Unit test
 
 ## 🏗 Clean Architecture
 <p align="center">
