@@ -13,6 +13,7 @@
 **Table of Contents**
 - [🌱 Features](#-features)
 - [🏗 Clean Architecture](#-clean-architecture)
+- [🧪 Swagger](#-swagger)
 - [🛠 Installation](#-installation)
 
 ## 🌱 Features
@@ -33,6 +34,11 @@
 ## 🏗 Clean Architecture
 <p align="center">
   <img src="images/clean-architecture-diagram.webp" width="450" />
+</p>
+
+## 🧪 Swagger
+<p align="center">
+  <img src="images/swagger.png" width="1000" />
 </p>
 
 ## 🛠 Installation

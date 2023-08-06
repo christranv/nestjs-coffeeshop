@@ -7,7 +7,7 @@ import { GetFulfilledOrdersQuery } from '../application/queries/impl';
 import { PlaceOrderCommand } from '../domain/commands/place-order.command';
 
 @ApiTags(API_TAG_ORDER)
-@Controller('api/v1/orders')
+@Controller('v1/orders')
 export class OrderController extends BaseController {
 
   constructor(
