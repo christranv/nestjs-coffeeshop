@@ -15,7 +15,8 @@ import { persistent } from './infrastructure/persistent/di';
       cache: true,
     }),
     persistent,
-    CqrsModule],
+    CqrsModule
+  ],
   providers: [],
   exports: [ConfigModule, CqrsModule]
 })

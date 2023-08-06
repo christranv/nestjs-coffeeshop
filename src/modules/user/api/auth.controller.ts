@@ -1,6 +1,7 @@
 import { Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
+import TokenPayload from '@src/shared/api/auth/token-payload.dto';
 import { API_TAG_AUTH } from '@src/shared/api/constant';
 import { LoginQuery } from '../application/queries/impl';
 import { User } from '../domain/user';
@@ -19,7 +20,7 @@ export class AuthController {
   @ApiBody({ type: LoginQuery })
   async login(@Request() req: { user: User }) {
     const user = req.user;
-    const payload = { sub: user.id, username: user.username, role: user.role };
+    const payload: TokenPayload = { sub: user.id, username: user.username, role: user.role };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };

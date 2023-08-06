@@ -3,6 +3,7 @@ import {
     BadRequestException,
     Catch,
     ExceptionFilter,
+    ForbiddenException,
     HttpException,
     HttpStatus,
     Logger,
@@ -29,7 +30,12 @@ export class AllExceptionsFilter implements ExceptionFilter {
             case UnauthorizedException:
                 httpStatus = HttpStatus.UNAUTHORIZED;
                 break;
-            case DomainException || NotFoundException || BadRequestException:
+            case ForbiddenException:
+                httpStatus = HttpStatus.FORBIDDEN;
+                break;
+            case DomainException:
+            case NotFoundException:
+            case BadRequestException:
                 httpStatus = HttpStatus.BAD_REQUEST;
                 break;
             case HttpException:
