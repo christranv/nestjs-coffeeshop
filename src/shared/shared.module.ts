@@ -1,12 +1,23 @@
 import { Logger, Module, OnModuleDestroy } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { CqrsModule, EventBus, IEvent } from '@nestjs/cqrs';
+import configuration from '@src/config/configuration';
+import { validate } from 'class-validator';
 import { Subject, takeUntil } from 'rxjs';
 import { persistent } from './infrastructure/persistent/di';
 
 @Module({
-  imports: [persistent, CqrsModule],
+  imports: [
+    ConfigModule.forRoot({
+      load: [configuration],
+      validate,
+      expandVariables: true,
+      cache: true,
+    }),
+    persistent,
+    CqrsModule],
   providers: [],
-  exports: [CqrsModule]
+  exports: [ConfigModule, CqrsModule]
 })
 export class SharedModule implements OnModuleDestroy {
   private destroy$ = new Subject<void>();

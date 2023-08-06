@@ -6,6 +6,7 @@
     "assets": [{ "include": "../config/*.yaml", "outDir": "./dist/config" }],
     "deleteOutDir": true,
     "builder": "swc",
-    "typeCheck": true
+    "typeCheck": true,
+    "plugins": ["@nestjs/swagger"]
   }
 }

@@ -16,12 +16,19 @@
 - [🛠 Installation](#-installation)
 
 ## 🌱 Features
-- Support Postgres DB
-- Support data seeding
-- Apply Domain-driven design
-- Apply CQRS
-- Support background job
-- Unit test
+
+- Auth
+  - Passport JWT
+- Database
+  - Postgres DB
+  - Data seeding
+- Design
+  - Clean Architecture
+  - Domain-driven design
+  - CQRS
+- Background job
+- Testing
+  - Unit test
 
 ## 🏗 Clean Architecture
 <p align="center">
