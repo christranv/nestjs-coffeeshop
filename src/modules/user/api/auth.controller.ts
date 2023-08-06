@@ -1,13 +1,14 @@
-import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { API_TAG_AUTH } from '@src/shared/api/constant';
-import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { LoginQuery } from '../application/queries/impl';
+import { User } from '../domain/user';
 import { LocalAuthGuard } from './auth/local-auth.guard';
 
+@ApiBearerAuth()
 @ApiTags(API_TAG_AUTH)
 @Controller('v1/auth')
-@UseGuards(JwtAuthGuard)
 export class AuthController {
   constructor(
     private jwtService: JwtService,
@@ -15,16 +16,12 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
-  async login(@Request() req: any) {
+  @ApiBody({ type: LoginQuery })
+  async login(@Request() req: { user: User }) {
     const user = req.user;
     const payload = { sub: user.id, username: user.username, role: user.role };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
-  }
-
-  @Get("test")
-  async test() {
-    return "OK";
   }
 }
