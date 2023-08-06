@@ -38,7 +38,7 @@ export class BaristaItem extends BaseAggregateRoot {
   public setTimeUp(
     orderId: string,
     itemLineId: string,
-    timeUp: Date,
+    timeUp: Date
   ): BaristaItem {
     this.addDomainEvent(
       new OrderUp(

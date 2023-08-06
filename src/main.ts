@@ -1,4 +1,4 @@
-import { RequestMethod } from '@nestjs/common';
+import { RequestMethod, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -12,6 +12,16 @@ async function bootstrap() {
   app.setGlobalPrefix("api", {
     exclude: [{ path: 'health', method: RequestMethod.GET }],
   })
+
+  // Transform plain text request body to instance of class
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      transformOptions: {
+        enableCircularCheck: true
+      }
+    }),
+  );
 
   // Config Swagger
   const config = new DocumentBuilder()

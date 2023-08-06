@@ -2,7 +2,7 @@ import { ItemType } from '@src/shared/domain/base/enums/item-type';
 import { BaristaOrderIn, KitchenOrderIn } from '@src/shared/domain/events/order-in';
 import { DomainException } from '@src/shared/domain/exceptions/domain.exception';
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
-import { Column, Entity, OneToMany, PrimaryColumn, Relation } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { OrderUp } from '../../../shared/domain/events/order-up';
 import { PlaceOrderCommand } from './commands/place-order.command';
 import { OrderUpdate } from './events/order-update';
@@ -15,7 +15,7 @@ import { OrderStatus } from './order-status';
 
 @Entity()
 export class Order extends BaseAggregateRoot {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn("uuid")
   public id: string;
 
   @Column('int')
@@ -31,18 +31,23 @@ export class Order extends BaseAggregateRoot {
   public location: Location;
 
   @OneToMany(() => LineItem, (lineItem) => lineItem.order)
-  public lineItems: Relation<LineItem[]>;
+  public lineItems: LineItem[];
 
-  constructor(orderSource: OrderSource, loyaltyMemberId: string, orderStatus: OrderStatus, location: Location) {
+  @Column()
+  public createdBy: string;
+
+  constructor(orderSource: OrderSource, loyaltyMemberId: string, orderStatus: OrderStatus, location: Location, createdBy: string) {
     super()
     this.orderSource = orderSource;
     this.loyaltyMemberId = loyaltyMemberId;
     this.orderStatus = orderStatus;
     this.location = location;
+    this.createdBy = createdBy;
   }
 
   static from(command: PlaceOrderCommand, itemMap: Map<ItemType, Item>): Order {
-    const order = new Order(command.orderSource, command.loyaltyMemberId, OrderStatus.IN_PROGRESS, command.location);
+    const order = new Order(command.orderSource, command.loyaltyMemberId, OrderStatus.IN_PROGRESS, command.location, command.createdBy);
+    order.lineItems = []
 
     if (command.baristaItems.length) {
       for (const baristaItem of command.baristaItems) {
@@ -80,7 +85,7 @@ export class Order extends BaseAggregateRoot {
     const item = this.lineItems.find(i => i.id == orderUp.itemLineId);
     if (!!item) {
       item.itemStatus = ItemStatus.FULFILLED;
-      this.addDomainEvent(new OrderUpdate(this.id, item.id, item.itemType, OrderStatus.FULFILLED, orderUp.madeBy));
+      this.addDomainEvent(new OrderUpdate(this.id, item.id, item.itemType, OrderStatus.FULFILLED));
     }
 
     // if there are both barista and kitchen items is fulfilled then checking status and change order to Fulfilled

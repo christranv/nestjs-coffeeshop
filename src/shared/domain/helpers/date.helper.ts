@@ -1,6 +1,6 @@
 export class DateHelper {
     static get UTCNow(): Date {
-        return DateHelper.UTCNow
+        return new Date()
     }
 
     static addSeconds(date: Date, seconds: number): Date {
