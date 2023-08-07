@@ -26,7 +26,6 @@
   - Clean Architecture
   - Domain-driven design
   - CQRS
-- Background job
 - Testing
   - Unit test
 
