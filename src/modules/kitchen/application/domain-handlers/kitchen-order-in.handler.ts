@@ -1,24 +1,20 @@
-import { EventsHandler } from "@nestjs/cqrs";
+import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
-import { BaseCommandHandler } from "@src/shared/application/seedwork/base.handler";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { KitchenOrderIn } from "@src/shared/domain/events/order-in";
 import { DateHelper } from "@src/shared/domain/helpers/date.helper";
-import { DataSource, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { KitchenOrder } from "../../domain/kitchen-order";
 
 @EventsHandler(KitchenOrderIn)
-export class KitchenOrderInHandler extends BaseCommandHandler<KitchenOrderIn> {
+export class KitchenOrderInHandler implements IEventHandler<KitchenOrderIn> {
 
     constructor(
-        dataSource: DataSource,
         @InjectRepository(KitchenOrder)
         private readonly repository: Repository<KitchenOrder>
-    ) {
-        super(dataSource);
-    }
+    ) { }
 
-    async onExecute(event: KitchenOrderIn): Promise<void> {
+    async handle(event: KitchenOrderIn): Promise<void> {
         const kitchenOrder = KitchenOrder.from(event.orderId, event.itemType, event.itemName, event.timeIn);
 
         const delay = KitchenOrderInHandler.calculateDelay(event.itemType);

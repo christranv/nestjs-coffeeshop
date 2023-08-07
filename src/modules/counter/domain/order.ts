@@ -1,8 +1,9 @@
 import { ItemType } from '@src/shared/domain/base/enums/item-type';
 import { BaristaOrderIn, KitchenOrderIn } from '@src/shared/domain/events/order-in';
 import { DomainException } from '@src/shared/domain/exceptions/domain.exception';
+import { IdHelper } from '@src/shared/domain/helpers/id.helper';
 import { BaseAggregateRoot } from '@src/shared/domain/seedwork/base-entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { OrderUp } from '../../../shared/domain/events/order-up';
 import { PlaceOrderCommand } from './commands/place-order.command';
 import { OrderUpdate } from './events/order-update';
@@ -15,7 +16,7 @@ import { OrderStatus } from './order-status';
 
 @Entity()
 export class Order extends BaseAggregateRoot {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryColumn("uuid")
   public id: string;
 
   @Column('int')
@@ -38,6 +39,7 @@ export class Order extends BaseAggregateRoot {
 
   constructor(orderSource: OrderSource, loyaltyMemberId: string, orderStatus: OrderStatus, location: Location, createdBy: string) {
     super()
+    this.id = IdHelper.GetNewUUID();
     this.orderSource = orderSource;
     this.loyaltyMemberId = loyaltyMemberId;
     this.orderStatus = orderStatus;
@@ -55,7 +57,7 @@ export class Order extends BaseAggregateRoot {
         if (!item) throw new DomainException("Item not found!")
         const lineItem = new LineItem(baristaItem.itemType, item.name, item.price, ItemStatus.IN_PROGRESS, true);
 
-        order.addDomainEvent(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
+        order.publish(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
         order.addDomainEvent(new BaristaOrderIn(order.id, lineItem.id, lineItem.itemType, lineItem.name));
 
         order.lineItems.push(lineItem);

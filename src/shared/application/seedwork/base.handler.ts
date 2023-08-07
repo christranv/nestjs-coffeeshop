@@ -1,11 +1,11 @@
 import { ICommand, ICommandHandler } from "@nestjs/cqrs";
 import { DataSource } from "typeorm";
 
-export abstract class BaseCommandHandler<T extends ICommand = any> implements ICommandHandler<T> {
+abstract class BaseCommandHandler<T extends ICommand = any, R = any> implements ICommandHandler<T> {
 
-    constructor(private readonly dataSource: DataSource) { }
+    constructor(readonly dataSource: DataSource) { }
 
-    async execute(command: T): Promise<any> {
+    async execute(command: T): Promise<R> {
         const queryRunner = this.dataSource.createQueryRunner();
 
         await queryRunner.connect();
@@ -26,5 +26,7 @@ export abstract class BaseCommandHandler<T extends ICommand = any> implements IC
 
     }
 
-    abstract onExecute(command: T): Promise<any>;
+    abstract onExecute(command: T): Promise<R>;
 }
+
+export default BaseCommandHandler
