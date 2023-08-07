@@ -26,13 +26,11 @@ class PlaceOrderHandler extends BaseCommandHandler<PlaceOrderCommand, void> {
         const itemMap = new Map<ItemType, Item>();
         items.map(item => itemMap.set(item.id, item))
 
-        // const order = Order.from(command, itemMap)
         const order = this.publisher.mergeObjectContext(
             Order.from(command, itemMap)
         );
 
-        await this.orderRepository.insert(order);
-        order.getUncommittedEvents()
+        await this.orderRepository.save(order);
         order.commit()
     }
 }

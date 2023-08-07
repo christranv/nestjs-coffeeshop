@@ -1,4 +1,4 @@
-import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
+import { EventPublisher, EventsHandler, IEventHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { KitchenOrderIn } from "@src/shared/domain/events/order-in";
@@ -10,18 +10,22 @@ import { KitchenOrder } from "../../domain/kitchen-order";
 export class KitchenOrderInHandler implements IEventHandler<KitchenOrderIn> {
 
     constructor(
+        private readonly publisher: EventPublisher,
         @InjectRepository(KitchenOrder)
         private readonly repository: Repository<KitchenOrder>
     ) { }
 
     async handle(event: KitchenOrderIn): Promise<void> {
-        const kitchenOrder = KitchenOrder.from(event.orderId, event.itemType, event.itemName, event.timeIn);
+        const kitchenOrder = this.publisher.mergeObjectContext(
+            KitchenOrder.from(event.orderId, event.itemType, event.itemName, event.timeIn)
+        )
 
         const delay = KitchenOrderInHandler.calculateDelay(event.itemType);
         const timeUp = DateHelper.addSeconds(DateHelper.UTCNow, delay);
         kitchenOrder.setTimeUp(event.itemLineId, timeUp);
 
-        await this.repository.insert(kitchenOrder);
+        await this.repository.save(kitchenOrder);
+        kitchenOrder.commit();
     }
 
     private static calculateDelay(itemType: ItemType) {

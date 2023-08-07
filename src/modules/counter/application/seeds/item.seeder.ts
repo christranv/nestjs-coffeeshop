@@ -24,6 +24,6 @@ export default class ItemSeeder implements Seeder {
             new Item(ItemType.MUFFIN, 7),
             new Item(ItemType.CROISSANT_CHOCOLATE, 9),
         ];
-        await repository.insert(items);
+        await repository.save(items);
     }
 }

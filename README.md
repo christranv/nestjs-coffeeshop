@@ -4,7 +4,6 @@
 
 <h1> Coffee Shop API </h1>
 
-![Status](https://img.shields.io/badge/Status-Developing-0287D0?style=flat-square)&nbsp;
 ![NestJS](https://img.shields.io/badge/NestJS-10%2E0-E0234E?style=flat-square&logo=nestjs&logoColor=E0234E)&nbsp;
 ![Postgres](https://img.shields.io/badge/Posgres-15%2E3-4169E1?style=flat-square&logo=PostgreSQL&logoColor=white)&nbsp;
 ![nodejs](https://img.shields.io/badge/Node.js-18-3C873A?style=flat-square&logo=nodedotjs&logoColor=white)

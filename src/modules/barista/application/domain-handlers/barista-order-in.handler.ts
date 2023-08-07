@@ -1,4 +1,4 @@
-import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
+import { EventPublisher, EventsHandler, IEventHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ItemType } from "@src/shared/domain/base/enums/item-type";
 import { BaristaOrderIn } from "@src/shared/domain/events/order-in";
@@ -10,18 +10,22 @@ import { BaristaItem } from "../../domain/barista-item";
 export class BaristaOrderInHandler implements IEventHandler<BaristaOrderIn> {
 
     constructor(
+        private readonly publisher: EventPublisher,
         @InjectRepository(BaristaItem)
         private readonly repository: Repository<BaristaItem>
     ) { }
 
     async handle(event: BaristaOrderIn): Promise<void> {
-        const baristaItem = BaristaItem.from(event.itemType, event.itemName, DateHelper.UTCNow);
+        const baristaItem = this.publisher.mergeObjectContext(
+            BaristaItem.from(event.itemType, event.itemName, DateHelper.UTCNow)
+        );
 
         const delay = BaristaOrderInHandler.calculateDelay(event.itemType)
         const timeUp = DateHelper.addSeconds(DateHelper.UTCNow, delay);
         baristaItem.setTimeUp(event.orderId, event.itemLineId, timeUp);
 
-        await this.repository.insert(baristaItem);
+        await this.repository.save(baristaItem);
+        baristaItem.commit();
     }
 
     private static calculateDelay(itemType: ItemType) {

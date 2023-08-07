@@ -1,4 +1,4 @@
-import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
+import { EventPublisher, EventsHandler, IEventHandler } from "@nestjs/cqrs";
 import { InjectRepository } from "@nestjs/typeorm";
 import { OrderUp } from "@src/shared/domain/events/order-up";
 import { DomainException } from "@src/shared/domain/exceptions/domain.exception";
@@ -9,16 +9,18 @@ import { Order } from "../../domain/order";
 export class OrderUpHandler implements IEventHandler<OrderUp> {
 
     constructor(
+        private readonly publisher: EventPublisher,
         @InjectRepository(Order)
         private readonly repository: Repository<Order>
     ) { }
 
     async handle(event: OrderUp): Promise<void> {
-        const order = await this.repository.findOneBy({ id: event.orderId });
-
+        let order = await this.repository.findOneBy({ id: event.orderId })
         if (!order) throw new DomainException("Order not found!")
 
-        const orderUpdated = order.applyOrder(event);
-        await this.repository.save(orderUpdated);
+        order = this.publisher.mergeObjectContext(order)
+        order.applyOrder(event);
+        await this.repository.save(order);
+        order.commit()
     }
 }

@@ -31,7 +31,10 @@ export class Order extends BaseAggregateRoot {
   @Column('int')
   public location: Location;
 
-  @OneToMany(() => LineItem, (lineItem) => lineItem.order)
+  @OneToMany(() => LineItem, (lineItem) => lineItem.order, {
+    eager: true,
+    cascade: ["insert", "update"],
+  })
   public lineItems: LineItem[];
 
   @Column()
@@ -68,7 +71,7 @@ export class Order extends BaseAggregateRoot {
       for (const kitchenItem of command.kitchenItems) {
         const item = itemMap.get(kitchenItem.itemType);
         if (!item) throw new DomainException("Item not found!")
-        const lineItem = new LineItem(kitchenItem.itemType, item.toString(), item.price, ItemStatus.IN_PROGRESS, false);
+        const lineItem = new LineItem(kitchenItem.itemType, item.name, item.price, ItemStatus.IN_PROGRESS, false);
 
         order.addDomainEvent(new OrderUpdate(order.id, lineItem.id, lineItem.itemType, OrderStatus.IN_PROGRESS));
         order.addDomainEvent(new KitchenOrderIn(order.id, lineItem.id, lineItem.itemType, lineItem.name));
@@ -80,7 +83,7 @@ export class Order extends BaseAggregateRoot {
     return order;
   }
 
-  applyOrder(orderUp: OrderUp): Order {
+  applyOrder(orderUp: OrderUp) {
     if (!this.lineItems)
       return this;
 
@@ -94,6 +97,5 @@ export class Order extends BaseAggregateRoot {
     if (this.lineItems.every(i => i.itemStatus == ItemStatus.FULFILLED)) {
       this.orderStatus = OrderStatus.FULFILLED;
     }
-    return this;
   }
 }

@@ -15,7 +15,7 @@ export class LineItem {
   @Column()
   public name: string;
 
-  @Column()
+  @Column('float')
   public price: number;
 
   @Column('int')

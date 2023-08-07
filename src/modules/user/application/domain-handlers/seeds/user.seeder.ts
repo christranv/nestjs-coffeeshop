@@ -17,6 +17,6 @@ export default class UserSeeder implements Seeder {
             new User('Admin', 'admin', await BcryptHelper.hash('admin123'), Role.Admin),
             new User('Customer 01', 'customer01', await BcryptHelper.hash('customer123'), Role.User),
         ];
-        await repository.insert(users);
+        await repository.save(users);
     }
 }
