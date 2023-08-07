@@ -31,7 +31,7 @@
 
 ## 🏗 Clean Architecture
 <p align="center">
-  <img src="images/clean-architecture-diagram.webp" width="750" />
+  <img src="images/clean-architecture-diagram.webp" width="650" />
 </p>
 
 ## 🧪 Swagger
