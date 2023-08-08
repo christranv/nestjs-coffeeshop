@@ -19,6 +19,7 @@
 
 - Auth
   - Passport JWT
+  - Role-based access control
 - Database
   - Postgres DB
   - Data seeding
@@ -26,8 +27,6 @@
   - Clean Architecture
   - Domain-driven design
   - CQRS
-- Testing
-  - Unit test
 
 ## 🏗 Clean Architecture
 <p align="center">
